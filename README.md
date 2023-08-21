@@ -2,7 +2,7 @@
 
 Generic-supporting [golang.org/x/sync/singleflight](https://golang.org/x/sync/singleflight).
 
-Example usage ([Go Playground](https://go.dev/play/p/KM383MCGJGh)):
+Example usage ([Go Playground](https://go.dev/play/p/jPDKiE7pNp_4)):
 
 ```go
 package main
@@ -44,12 +44,13 @@ func main() {
 				// When true, the workFn was only called once and its output used
 				// multiple times.
 			} else {
-				// This shouldn't happen in this example
+				// This might happen - it's dependent on the underlying singleflight
+				// library behaviour.
 				fmt.Println("WARN: Response was not shared!")
 			}
 
 			fmt.Println("Got val: ", val)
-		}
+		}()
 	}
 
 	fmt.Println("Waiting for all requests to finish")
